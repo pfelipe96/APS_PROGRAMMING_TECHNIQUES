@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int length = 2;
+const int length = 10;
 
 void dataAboutPlayers(char aboutPlayers[length][length], float heightPlayers[length]);
 float averagePlayers(float it[length]);
@@ -123,19 +123,17 @@ float averagePlayers(float it[length]){
 }
 
 float standardDeviationPlayers(float heightPlayers[length]){
-    float sumHeightPow, sumHeight = 0;
+    float sumHeightSquare = 0;
     float average = averagePlayers(heightPlayers);
 
     for(int i = 0; i < length; i++){
         //Picking up only one player at a time
         float heightPlayer = heightPlayers[i];
         //Calculating player height by square
-        sumHeightPow += (heightPlayer*heightPlayer);
-        //Adding height of all players
-        sumHeight += heightPlayer;
+        sumHeightSquare += (heightPlayer*heightPlayer);
     }
 
-    return (sumHeightPow/sumHeight) - (average*average);
+    return (sumHeightSquare/length) - (average*average);
 }
 
 void higherAndLowerHeight(char aboutPlayers[length][length], float heightPlayers[length]){
